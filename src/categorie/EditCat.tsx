@@ -34,7 +34,7 @@ export const EditCat=()=> {
                 setCategorie(result.data);
             }
                 loadCat();
-            },[]);
+            },[id]);
             const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                 e.preventDefault();
                 try {
