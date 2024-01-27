@@ -34,7 +34,7 @@ export const AllModele = ()=>{
       }
   };
   // delete
-  const { id} = useParams<{ id: string }>();
+
   const deleteCat= async(idCategorie:string)=>{
     const jwtToken = localStorage.getItem('jwtToken');
     if (!jwtToken) {

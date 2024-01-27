@@ -2,8 +2,8 @@
 import { Navy } from "../nav/Navy";
 import { CompAnnonce } from "./CompAnnonce";
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { Link,useParams, useNavigate } from "react-router-dom";
+import  { useEffect, useState } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 type Category = {
     idAnnonce: string;
     dateAnnonce: string;

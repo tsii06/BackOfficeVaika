@@ -17,12 +17,12 @@ return(
 
       <div className="row">
         <div className="col-lg-4 col-md-4">
-          <a href="#" className="btn btn-outline-primary ml-2">Valider</a>
+          <a href="/" className="btn btn-outline-primary ml-2">Valider</a>
         </div>
         <div className="col-lg-4 col-md-4">
         </div>
         <div className="col-lg-4 col-md-4">
-          <a href="#" className="btn btn-outline-danger ml-2">Refuser</a>
+          <a href="/" className="btn btn-outline-danger ml-2">Refuser</a>
         </div>
       </div>
     </div>

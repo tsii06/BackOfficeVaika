@@ -17,6 +17,23 @@ export const EditCarb=()=> {
         console.log(newData);
             }
             useEffect(()=>{
+              const loadCat= async()=>{
+                const jwtToken = localStorage.getItem('jwtToken');
+                if (!jwtToken) {
+                  console.error('Jetons JWT non trouvés');
+                  // Vous pouvez gérer la redirection vers la page de connexion ici
+                  return;
+                }
+          
+                const config = {
+                  headers: {
+                    Authorization: `Bearer ${jwtToken}`,
+                  },
+                };
+                const result =  await axios.get(`https://vaika-production.up.railway.app/carburant/${id}`,config);
+                setCategorie(result.data);
+            }
+
                 loadCat();
             },[]);
             const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -41,22 +58,7 @@ export const EditCarb=()=> {
                 }
               };
          
-              const loadCat= async()=>{
-                const jwtToken = localStorage.getItem('jwtToken');
-                if (!jwtToken) {
-                  console.error('Jetons JWT non trouvés');
-                  // Vous pouvez gérer la redirection vers la page de connexion ici
-                  return;
-                }
-          
-                const config = {
-                  headers: {
-                    Authorization: `Bearer ${jwtToken}`,
-                  },
-                };
-                const result =  await axios.get(`https://vaika-production.up.railway.app/carburant/${id}`,config);
-                setCategorie(result.data);
-            }
+           
          
     return (
    <div>

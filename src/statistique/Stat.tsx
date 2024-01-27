@@ -8,13 +8,7 @@ const Stat: React.FC<{ data: number[]; labels: string[] }> = ({ data, labels }) 
   const chartInstance = useRef<Chart | null>(null);
 
  
-  // Fonction pour générer une couleur aléatoire
-  const generateRandomColor = (): string => {
-    const red = Math.floor(Math.random() * 256);
-    const green = Math.floor(Math.random() * 256);
-    const blue = Math.floor(Math.random() * 256);
-    return `rgba(${red},${green},${blue},0.2)`;
-  };
+
 
   useEffect(() => {
     if (chartRef.current) {
