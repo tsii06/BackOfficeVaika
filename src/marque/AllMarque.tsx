@@ -1,7 +1,7 @@
 import axios from 'axios';
 import  { useEffect, useState } from 'react';
 import { Navy } from "../nav/Navy";
-import { Link,useParams, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 type Category = {
   idMarque: string;
@@ -33,8 +33,7 @@ export const AllMarque = ()=>{
         console.error("Erreur lors du chargement des catégories :", error);
     }
 };
-// delete
-const { id} = useParams<{ id: string }>();
+
 const deleteCat= async(idCategorie:string)=>{
   const jwtToken = localStorage.getItem('jwtToken');
   if (!jwtToken) {
