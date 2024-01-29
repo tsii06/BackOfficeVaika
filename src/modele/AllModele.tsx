@@ -12,7 +12,7 @@ export const AllModele = ()=>{
     const [cats,setCats] = useState<Category[]>([]);
     useEffect(()=>{
         loadCat();
-    },[]);
+    });
     const loadCat = async () => {
       try {
         const jwtToken = localStorage.getItem('jwtToken');
@@ -33,8 +33,6 @@ export const AllModele = ()=>{
           console.error("Erreur lors du chargement des catégories :", error);
       }
   };
-  // delete
-  const { id} = useParams<{ id: string }>();
   const deleteCat= async(idCategorie:string)=>{
     const jwtToken = localStorage.getItem('jwtToken');
     if (!jwtToken) {

@@ -33,8 +33,7 @@ export const AllCat = ()=>{
           console.error("Erreur lors du chargement des catégories :", error);
       }
   };
-  // delete
-  const { id} = useParams<{ id: string }>();
+
   const deleteCat= async(idCategorie:string)=>{
     const jwtToken = localStorage.getItem('jwtToken');
     if (!jwtToken) {

@@ -147,8 +147,7 @@ export const Detail = () => {
                 <div className="photo-grid">
                   {photos.length > 0 ? (
                     photos.map((photo, index) => (
-                      <img key={index} src={`data:image/jpeg;base64,${photo.path}`} className="card-img-top" alt={`Image ${index + 1}`} />
-
+                      <img key={index} src={`data:image/jpeg;base64,${photo.path}`} className="card-img-top" />
                     ))
                   ) : (
                     <div className="placeholder-image">Aucune photo disponible.</div>
