@@ -55,7 +55,7 @@ export const Annonce = () => {
         Authorization: `Bearer ${jwtToken}`,
       },
     };
-      const result = await axios.get("https://vaika-production.up.railway.app/annonces",config);
+      const result = await axios.get("https://vaika-production.up.railway.app/annonce/statut/1",config);
       setCats(result.data);
       console.log(result);
     } catch (error) {
@@ -63,23 +63,7 @@ export const Annonce = () => {
     }
   };
 
-  const deleteCat = async (idAnnonce: string) => {
-    const jwtToken = localStorage.getItem('jwtToken');
-    if (!jwtToken) {
-      console.error('Jetons JWT non trouvés');
-      return;
-    }
 
-    const config = {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-    };
-
-    await axios.delete(`https://vaika-production.up.railway.app/annonce/${idAnnonce}`, config);
-    loadCat();
-    navigate('/annonce');
-  };
 
   return (
     <div>

@@ -32,11 +32,15 @@ type Category = {
   description: string;
 };
 
+type Photo ={
+  idAnnonce :string;
+  path : string;
+}
 export const Detail = () => {
   let navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const [cats, setCats] = useState<Category | null>(null);
-
+  const [photos, setPhotos] = useState<Photo[]>([]);
   const loadCat = async () => {
     const jwtToken = localStorage.getItem('jwtToken');
     if (!jwtToken) {
@@ -48,12 +52,18 @@ export const Detail = () => {
     const config = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
+        
       },
     };
 
     try {
-      const result = await axios.get(`https://vaika-production.up.railway.app/annonce/${id}`, config);
-      setCats(result.data);
+      const [categoryResult, photosResult] = await Promise.all([
+        axios.get(`https://vaika-production.up.railway.app/annonce/${id}`, config),
+        axios.get(`https://vaika-production.up.railway.app/photos/${id}`,config), // Replace with your actual photo API endpoint
+      ]);
+
+      setCats(categoryResult.data);
+      setPhotos(photosResult.data);
     } catch (error) {
       console.error('Erreur lors du chargement de la catégorie :', error);
     }
@@ -70,11 +80,20 @@ export const Detail = () => {
     const config = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
+        'Content-Type': 'application/json',
       },
     };
-    await axios.patch(`https://vaika-production.up.railway.app/annonce/${idCategorie}/statut`, config)
-    loadCat();
-    navigate('/listeC');
+    try {
+      const response = await axios.patch(
+        `https://vaika-production.up.railway.app/annonce/${idCategorie}/statut?statut=2`,
+        null, // Utilisez null pour le corps de la requête si aucun corps n'est nécessaire
+        config
+      );
+      console.log('Réponse de l\'API :', response);
+      navigate('/annonce');
+    } catch (error) {
+        console.log("kd");
+    }
   }
 
   useEffect(() => {
@@ -122,21 +141,26 @@ export const Detail = () => {
                </div>
                <h5>Description :</h5>
                <p id="description">{cats.description}</p>
+
+  
+               <h2>Photos</h2>
+                <div className="photo-grid">
+                  {photos.length > 0 ? (
+                    photos.map((photo, index) => (
+                      <img key={index} src={`data:image/jpeg;base64,${photo.path}`} className="card-img-top" alt={`Photo ${index + 1}`} />
+                    ))
+                  ) : (
+                    <div className="placeholder-image">Aucune photo disponible.</div>
+                  )}
+                </div>
                <div className="buttons">
                 
                    <Link className='btn btn-primary mx-2' to={"/annonce"}>Retour</Link>
                    <Link to={""} onClick={() => patchCat(cats.idAnnonce)} className="btn btn-success ml-2">Valider</Link>
-                   <Link  to={""} onClick={() => patchCat(cats.idAnnonce)} className="btn btn-danger ml-2">Refuser</Link>
                </div>
            </div>
-           <h2>Photos</h2>
-           <div className="photo-grid">
-            
-            <img src="camaro.jpg" alt="Photo de la voiture"/>
-            <img src="camaro.jpg" alt="Photo de la voiture"/>
-            <img src="camaro.jpg" alt="Photo de la voiture"/>
-            <img src="camaro.jpg" alt="Photo de la voiture"/>
-        </div>
+
+  
        </div>
 
         )}
