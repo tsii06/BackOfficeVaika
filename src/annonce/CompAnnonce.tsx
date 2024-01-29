@@ -1,39 +1,72 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-type AnnonceProps = {
-    titre:String,
-    detail:String,
-    utilisateur:string;
-    imageSource: string;
-  }
-export const CompAnnonce = (props:AnnonceProps)=>{
-return(
-  <div className='container'>
-  <div className="card mx-auto" style={{ width: '18rem' }}>
-    <img src={props.imageSource} className="card-img-top" alt="..." />
-    <div className="card-body">
-      <h5 className="card-title text-center">{props.titre}</h5>
-      <p className="card-text text-center">{props.detail}</p>
-      <p className="card-text text-center">{props.utilisateur}</p>
+import { Link } from "react-router-dom";
+import axios from 'axios';  // N'oubliez pas d'importer axios
+import  { useEffect, useState } from 'react';
 
-      <div className="row">
-        <div className="col-lg-4 col-md-4">
-          <a href="/" className="btn btn-outline-primary ml-2">Valider</a>
-        </div>
-        <div className="col-lg-4 col-md-4">
-        </div>
-        <div className="col-lg-4 col-md-4">
-          <a href="/" className="btn btn-outline-danger ml-2">Refuser</a>
+type AnnonceProps = {
+  titre: string;
+  detail: string;
+  utilisateur: string;
+  imageSource: string;
+  idA: string;
+};
+
+type Photo ={
+  idAnnonce :string;
+  path : string;
+}
+
+export const CompAnnonce = (props: AnnonceProps) => {
+  const [categorie, setCategorie] = useState<Photo[]>([]);
+
+  const loadPhoto = async () => {
+    const jwtToken = localStorage.getItem('jwtToken');
+    if (!jwtToken) {
+      console.error('Jetons JWT non trouvés');
+      // Vous pouvez gérer la redirection vers la page de connexion ici
+      return;
+    }
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    };
+
+    try {
+      const result = await axios.get(`https://vaika-production.up.railway.app/photos/${props.idA}`, config);
+      setCategorie(result.data);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des photos:', error);
+    }
+  }
+
+  useEffect(() => {
+    loadPhoto();
+  }, [props.idA]);
+
+  return (
+    <div className='container'>
+      <div className="card mx-auto" style={{ width: '18rem' }}>
+      {categorie.length > 0 ? (
+          <img src={"data:image/jpeg;base64," + categorie[0].path} className="card-img-top" alt="Annonce Preview" />
+        ) : (
+          <div className="placeholder-image">Chargement...</div>
+        )}
+        <div className="card-body">
+          <h5 className="card-title text-center">{props.titre}</h5>
+          <p className="card-text ">{props.detail}</p>
+          <p className="card-text ">{props.utilisateur}</p>
+
+          <div className="row">
+            <div className="">
+              <Link className=' col-lg-12 btn btn-outline-success mx-2' to={`/detail/${props.idA}`}>
+                Detail
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-
-
-
-);
-
-
-
-
-}
+  );
+};

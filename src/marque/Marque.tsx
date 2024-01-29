@@ -1,7 +1,7 @@
 import React , { useState } from 'react'
 import { Navy } from "../nav/Navy";
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; 
+import { Link,useNavigate } from 'react-router-dom'; 
 
 export const Marque=()=> {
     let navigate = useNavigate() ;
@@ -41,6 +41,11 @@ export const Marque=()=> {
    <div>
          <Navy/>
         <div className='container'>
+        <nav className="navbar">
+        <ul>
+            <li><Link  to="/listeM">Liste de marque</Link></li>
+        </ul>
+    </nav>
             <div className="row log">
                   <h1 className='text-center fw-normal mb-3 '>Ajout Marque</h1>
                       <div className="col-lg-4"></div>

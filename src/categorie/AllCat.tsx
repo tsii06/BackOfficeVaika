@@ -1,7 +1,7 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navy } from "../nav/Navy";
-import { Link, useNavigate } from "react-router-dom";
+import { Link,useParams, useNavigate } from "react-router-dom";
 
 type Category = {
   idCategorie: string;
@@ -34,7 +34,7 @@ export const AllCat = ()=>{
       }
   };
   // delete
-  
+  const { id} = useParams<{ id: string }>();
   const deleteCat= async(idCategorie:string)=>{
     const jwtToken = localStorage.getItem('jwtToken');
     if (!jwtToken) {
@@ -94,10 +94,5 @@ export const AllCat = ()=>{
       </div>
     </div>
       </div>
-
-
-
-
-
     );
 }

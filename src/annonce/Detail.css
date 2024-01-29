@@ -1,0 +1,89 @@
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.car-details {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.details {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.detail {
+    flex: 1 1 50%; /* Chaque détail occupe la moitié de la largeur sur grand écran */
+    margin-bottom: 10px;
+}
+
+.detail p {
+    margin: 0;
+}
+
+span {
+    font-weight: bold;
+    color: #ff6f00;
+}
+
+#description {
+    font-size: 16px;
+    margin-top: 20px;
+}
+.buttons {
+    margin-top: 20px;
+    display: flex;
+}
+
+button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ddd;
+}
+
+.back-button {
+    background-color: #ff6f00;
+    color: #fff;
+}
+
+.validate-button {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.reject-button {
+    background-color: #f44336;
+    color: #fff;
+}
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Crée une grille avec des colonnes dynamiques */
+    grid-gap: 10px; /* Espacement entre les images */
+    margin-top: 20px; /* Espacement depuis le div précédent */
+}
+
+.photo-grid img {
+    width: 100%; /* Les images occupent toute la largeur de la colonne */
+    height: auto; /* Hauteur automatique pour maintenir les proportions */
+    border-radius: 8px; /* Coins arrondis */
+}

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'; // Utilisez useNavigate au lieu 
 import './login.css';
 
 export const Login: React.FC = () => {
-  const navigate = useNavigate(); // Utilisez useNavigate au lieu de useHistory
+  const navigate = useNavigate(); 
 
   const [user, setUser] = useState({
     email: 'tsiory@gmail.com',
@@ -54,39 +54,21 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className='container mycomposant'>
-      <div className="row log">
-        <div className="col-lg-4"></div>
-        <div className="col-lg-4">
-          <h1 className='text-center fw-normal mb-3 mt-3'>Login</h1>
-          <div className="input-group mb-3 mt-5">
-            <span className="input-group-text" id="basic-addon1">@</span>
-            <input
-              type="email"
-              className="form-control"
-              value={user.email}
-              placeholder="Email"
-              aria-label="Email"
-              aria-describedby="basic-addon1"
-              onChange={handleEmailChange}
-            />
-          </div>
-          <div className="input-group mb-3 mt-5">
-            <span className="input-group-text" id="basic-addon1">Password</span>
-            <input
-              type="password"
-              className="form-control"
-              value={user.mdp}
-              placeholder="Password"
-              aria-label="Password"
-              aria-describedby="basic-addon1"
-              onChange={handlePasswordChange}
-            />
-          </div>
-          <button type='button' onClick={handleLogin}>Login</button>
-        </div>
-        <div className="col-lg-4"></div>
+<div className="login">
+    <div className="login-container">
+          <h2>Connexion</h2>
+         
+              <div className="input-group">
+                  <input type="email" id="email" placeholder="Adresse e-mail" value={user.email} onChange={handleEmailChange}/>
+              </div>
+              <div className="input-group">
+                  <input type="password" id="password" placeholder="Mot de passe" value={user.mdp}  onChange={handlePasswordChange} />
+                  <span  className="toggle-password">Voir</span>
+              </div>
+              <button type="submit" onClick={handleLogin}>Se connecter</button>
+          
       </div>
-    </div>
+      </div>
+
   );
 };

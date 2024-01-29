@@ -1,27 +1,23 @@
+/* Acceuil.css */
 
-  .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px; 
-    padding: 10px;
-    /* display:flex;
-    flex-wrap:wrap ;
-    margin-left: -1px;
-    width: 100%; */
-  }
-  .item{
-    padding: 10px;
-  }
-  h3{
-    font-weight: normal;
-  }
-.stat{
-  text-align: center;
-  margin-top: 80px;
+.bg-white {
+  padding: 20px; /* Ajoutez un espace autour du contenu pour plus de lisibilité */
 }
-@media (max-width: 767px) {
-  /* Une colonne à pleine largeur pour les petits écrans */
-  .container {
-    grid-template-columns: 1fr;
-  }
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Utilisation de CSS Grid pour rendre les colonnes responsives */
+  gap: 20px; /* Ajoutez un espace entre les colonnes */
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-white {
+  color: white;
+}
+
+.mt-3 {
+  margin-top: 1rem;
 }

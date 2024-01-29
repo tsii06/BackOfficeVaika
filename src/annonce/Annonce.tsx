@@ -3,7 +3,8 @@ import { Navy } from "../nav/Navy";
 import { CompAnnonce } from "./CompAnnonce";
 import axios from 'axios';
 import  { useEffect, useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import './Annonce.css'
 type Category = {
     idAnnonce: string;
     dateAnnonce: string;
@@ -43,7 +44,18 @@ export const Annonce = () => {
 
   const loadCat = async () => {
     try {
-      const result = await axios.get("https://vaika-production.up.railway.app/annonces");
+      const jwtToken = localStorage.getItem('jwtToken');
+    if (!jwtToken) {
+      console.error('Jetons JWT non trouvés');
+      return;
+    }
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    };
+      const result = await axios.get("https://vaika-production.up.railway.app/annonces",config);
       setCats(result.data);
       console.log(result);
     } catch (error) {
@@ -66,49 +78,23 @@ export const Annonce = () => {
 
     await axios.delete(`https://vaika-production.up.railway.app/annonce/${idAnnonce}`, config);
     loadCat();
-    navigate('/listeM');
+    navigate('/annonce');
   };
 
   return (
     <div>
-      <table>
-        <thead>
-          <tr>
-            <th>ID Annonce</th>
-            <th>Date Annonce</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cats.map((cat) => (
-            <tr key={cat.idAnnonce}>
-              <td>{cat.idAnnonce}</td>
-              <td>{cat.dateAnnonce}</td>
-              <td>
-                <Link className='btn btn-outline-primary mx-2' to={`/editMarque/${cat.idAnnonce}`}>
-                  Edit
-                </Link>
-                <Link
-                  className='btn btn-outline-danger mx-2'
-                  to={`/deleteCat/${cat.idAnnonce}`}
-                  onClick={() => deleteCat(cat.idAnnonce)}
-                >
-                  Delete
-                </Link>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
       <Navy />
-      <div className="container">
+      <div className="content">
+        <h2>Liste d' annonces </h2>
         {cats.map((cat) => (
-          <div key={cat.idAnnonce} className="item mt-5">
+          <div key={cat.idAnnonce} className="annonce">
+           
             <CompAnnonce
               titre={cat.dateAnnonce}
               detail={cat.description}
               utilisateur={cat.utilisateur.nom}
               imageSource={'/bm.jpg'}
+              idA={cat.idAnnonce}
             />
           </div>
         ))}

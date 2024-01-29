@@ -1,6 +1,6 @@
 import React , { useState } from 'react'
 import { Navy } from "../nav/Navy";
-
+import {Link } from "react-router-dom";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; 
 
@@ -41,6 +41,11 @@ export const Modele=()=> {
    <div>
          <Navy/>
         <div className='container'>
+        <nav className="navbar">
+        <ul>
+            <li><Link  to="/listeMo">Liste de modele</Link></li>
+        </ul>
+    </nav>
             <div className="row log">
                   <h1 className='text-center fw-normal mb-3 '>Ajout Modele</h1>
                       <div className="col-lg-4"></div>
