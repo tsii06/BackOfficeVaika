@@ -18,7 +18,7 @@ export const EditCarb=()=> {
             }
             useEffect(()=>{
                 loadCat();
-            });
+            },[id]);
             const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                 e.preventDefault();
                 try {
@@ -35,7 +35,7 @@ export const EditCarb=()=> {
                     },
                   };
                   await axios.put(`https://vaika-production.up.railway.app/carburant/${id}`, categorie,config);
-                  navigate('/acceuil');
+                  navigate('/listeCarb');
                 } catch (error) {
                   console.error('Erreur lors de la soumission du formulaire :', error);
                 }
@@ -55,7 +55,10 @@ export const EditCarb=()=> {
                   },
                 };
                 const result =  await axios.get(`https://vaika-production.up.railway.app/carburant/${id}`,config);
-                setCategorie(result.data);
+                setCategorie((prevCategorie) => ({
+                  ...prevCategorie,
+                  nom: result.data.nom,
+                }));
             }
          
     return (
@@ -63,7 +66,7 @@ export const EditCarb=()=> {
          <Navy/>
         <div className='container'>
             <div className="row log">
-                  <h1 className='text-center fw-normal mb-3 '>Edit Categorie</h1>
+                  <h1 className='text-center fw-normal mb-3 '>Edit carburant</h1>
                       <div className="col-lg-4"></div>
                       <div className="col-lg-4 shadow ">
                         <form onSubmit={onSubmit}>

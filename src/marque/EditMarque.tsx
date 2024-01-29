@@ -18,7 +18,7 @@ export const EditMarque=()=> {
             }
             useEffect(()=>{
                 loadCat();
-            });
+            },[id]);
             const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                 e.preventDefault();
                 try {
@@ -35,7 +35,7 @@ export const EditMarque=()=> {
                     },
                   };
                   await axios.put(`https://vaika-production.up.railway.app/marque/${id}`, categorie,config);
-                  navigate('/acceuil');
+                  navigate('/listeM');
                 } catch (error) {
                   console.error('Erreur lors de la soumission du formulaire :', error);
                 }
@@ -55,7 +55,10 @@ export const EditMarque=()=> {
                   },
                 };
                 const result =  await axios.get(`https://vaika-production.up.railway.app/marque/${id}`,config);
-                setCategorie(result.data);
+                setCategorie((prevCategorie) => ({
+                  ...prevCategorie,
+                  nom: result.data.nom,
+                }));
             }
          
     return (

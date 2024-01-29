@@ -71,7 +71,7 @@ export const AllModele = ()=>{
                 <td>
                     <Link 
                         className='btn btn-outline-primary mx-2' 
-                        to={`/editCat/${cat.idModele}`}
+                        to={`/editModele/${cat.idModele}`}
                     >
                         Edit
                     </Link>

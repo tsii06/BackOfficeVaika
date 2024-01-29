@@ -18,7 +18,7 @@ export const EditCat=()=> {
             }
             useEffect(()=>{
                 loadCat();
-            });
+            },[id]);
             const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                 e.preventDefault();
                 try {
@@ -35,28 +35,38 @@ export const EditCat=()=> {
                     },
                   };
                   await axios.put(`https://vaika-production.up.railway.app/categorie/${id}`, categorie,config);
-                  navigate('/acceuil');
+                  navigate('/listeC');
                 } catch (error) {
                   console.error('Erreur lors de la soumission du formulaire :', error);
                 }
               };
-         
-              const loadCat= async()=>{
+        
+            const loadCat = async () => {
+              try {
                 const jwtToken = localStorage.getItem('jwtToken');
                 if (!jwtToken) {
                   console.error('Jetons JWT non trouvés');
                   // Vous pouvez gérer la redirection vers la page de connexion ici
                   return;
                 }
-          
+            
                 const config = {
                   headers: {
                     Authorization: `Bearer ${jwtToken}`,
                   },
                 };
-                const result =  await axios.get(`https://vaika-production.up.railway.app/categorie/${id}`,config);
-                setCategorie(result.data);
-            }
+                const result = await axios.get(`https://vaika-production.up.railway.app/categorie/${id}`, config);
+                
+                // Mettez à jour seulement la propriété nom de l'état existant
+                setCategorie((prevCategorie) => ({
+                  ...prevCategorie,
+                  nom: result.data.nom,
+                }));
+              } catch (error) {
+                console.error('Erreur lors du chargement de la catégorie:', error);
+              }
+            };
+            
          
     return (
    <div>

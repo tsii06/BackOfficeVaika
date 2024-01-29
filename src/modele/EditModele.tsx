@@ -18,7 +18,7 @@ export const EditModele=()=> {
             }
             useEffect(()=>{
                 loadCat();
-            });
+            },[id]);
             const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                 e.preventDefault();
                 try {
@@ -34,8 +34,8 @@ export const EditModele=()=> {
                       Authorization: `Bearer ${jwtToken}`,
                     },
                   };
-                  await axios.put(`https://vaika-production.up.railway.app/categorie/${id}`, categorie,config);
-                  navigate('/acceuil');
+                  await axios.put(`https://vaika-production.up.railway.app/modele/${id}`, categorie,config);
+                  navigate('/listeMo');
                 } catch (error) {
                   console.error('Erreur lors de la soumission du formulaire :', error);
                 }
@@ -54,8 +54,11 @@ export const EditModele=()=> {
                     Authorization: `Bearer ${jwtToken}`,
                   },
                 };
-                const result =  await axios.get(`https://vaika-production.up.railway.app/categorie/${id}`,config);
-                setCategorie(result.data);
+                const result =  await axios.get(`https://vaika-production.up.railway.app/modele/${id}`,config);
+                setCategorie((prevCategorie) => ({
+                  ...prevCategorie,
+                  nom: result.data.nom,
+                }));
             }
          
     return (
@@ -63,7 +66,7 @@ export const EditModele=()=> {
          <Navy/>
         <div className='container'>
             <div className="row log">
-                  <h1 className='text-center fw-normal mb-3 '>Edit Categorie</h1>
+                  <h1 className='text-center fw-normal mb-3 '>Edit modele</h1>
                       <div className="col-lg-4"></div>
                       <div className="col-lg-4 shadow ">
                         <form onSubmit={onSubmit}>
