@@ -3,7 +3,6 @@ import { Navy } from "../nav/Navy";
 import { CompAnnonce } from "./CompAnnonce";
 import axios from 'axios';
 import  { useEffect, useState } from 'react';
-import { useNavigate } from "react-router-dom";
 import './Annonce.css'
 type Category = {
     idAnnonce: string;
@@ -35,7 +34,6 @@ type Category = {
     description:string;
     };
 export const Annonce = () => {
-  let navigate = useNavigate();
   const [cats, setCats] = useState<Category[]>([]);
 
   useEffect(() => {

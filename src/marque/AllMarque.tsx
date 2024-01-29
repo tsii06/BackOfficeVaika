@@ -12,7 +12,7 @@ export const AllMarque = ()=>{
   const [cats,setCats] = useState<Category[]>([]);
   useEffect(()=>{
       loadCat();
-  },[]);
+  });
   const loadCat = async () => {
     try {
       const jwtToken = localStorage.getItem('jwtToken');

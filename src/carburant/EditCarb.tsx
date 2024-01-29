@@ -18,7 +18,7 @@ export const EditCarb=()=> {
             }
             useEffect(()=>{
                 loadCat();
-            },[id]);
+            });
             const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                 e.preventDefault();
                 try {

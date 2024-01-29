@@ -98,7 +98,7 @@ export const Detail = () => {
 
   useEffect(() => {
     loadCat();
-  }, [id]);
+  });
 
   return (
     <div>
@@ -147,7 +147,8 @@ export const Detail = () => {
                 <div className="photo-grid">
                   {photos.length > 0 ? (
                     photos.map((photo, index) => (
-                      <img key={index} src={`data:image/jpeg;base64,${photo.path}`} className="card-img-top" alt={`Photo ${index + 1}`} />
+                      <img key={index} src={`data:image/jpeg;base64,${photo.path}`} className="card-img-top" alt={`Image ${index + 1}`} />
+
                     ))
                   ) : (
                     <div className="placeholder-image">Aucune photo disponible.</div>

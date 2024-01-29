@@ -43,7 +43,7 @@ export const CompAnnonce = (props: AnnonceProps) => {
 
   useEffect(() => {
     loadPhoto();
-  }, [props.idA]);
+  });
 
   return (
     <div className='container'>
