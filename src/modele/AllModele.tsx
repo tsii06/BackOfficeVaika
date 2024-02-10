@@ -27,7 +27,7 @@ export const AllModele = ()=>{
             Authorization: `Bearer ${jwtToken}`,
           },
         };
-          const result = await axios.get("https://vaika-production.up.railway.app/modeles",config);
+          const result = await axios.get("https://vaikaback-production.up.railway.app/modeles",config);
           setCats(result.data);
       } catch (error) {
           console.error("Erreur lors du chargement des catégories :", error);
@@ -46,7 +46,7 @@ export const AllModele = ()=>{
         Authorization: `Bearer ${jwtToken}`,
       },
     };
-    await axios.delete(`https://vaika-production.up.railway.app/modele/${idCategorie}`,config)
+    await axios.delete(`https://vaikaback-production.up.railway.app/modele/${idCategorie}`,config)
     loadCat();
     navigate('/listeMo');
 }

@@ -13,7 +13,7 @@ export const Login: React.FC = () => {
   const handleLogin = async () => {
     try {
         
-        const response = await fetch('https://vaika-production.up.railway.app/auth', {
+        const response = await fetch('https://vaikaback-production.up.railway.app/auth', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

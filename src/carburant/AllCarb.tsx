@@ -27,7 +27,7 @@ export const AllCarb = ()=>{
                       Authorization: `Bearer ${jwtToken}`,
                     },
                   };
-          const result = await axios.get("https://vaika-production.up.railway.app/carburants",config);
+          const result = await axios.get("https://vaikaback-production.up.railway.app/carburants",config);
           setCats(result.data);
       } catch (error) {
           console.error("Erreur lors du chargement des catégories :", error);
@@ -48,7 +48,7 @@ export const AllCarb = ()=>{
                       Authorization: `Bearer ${jwtToken}`,
                     },
                   };
-    await axios.delete(`https://vaika-production.up.railway.app/carburant/${idCategorie}`,config)
+    await axios.delete(`https://vaikaback-production.up.railway.app/carburant/${idCategorie}`,config)
     loadCat();
     navigate('/listeCarb');
 }

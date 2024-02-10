@@ -29,7 +29,7 @@ export const Marque=()=> {
                       Authorization: `Bearer ${jwtToken}`,
                     },
                   };
-                  await axios.post('https://vaika-production.up.railway.app/marque', Marque,config);
+                  await axios.post('https://vaikaback-production.up.railway.app/marque', Marque,config);
                   navigate('/acceuil');
                 } catch (error) {
 

@@ -34,7 +34,7 @@ export const EditCat=()=> {
                       Authorization: `Bearer ${jwtToken}`,
                     },
                   };
-                  await axios.put(`https://vaika-production.up.railway.app/categorie/${id}`, categorie,config);
+                  await axios.put(`https://vaikaback-production.up.railway.app/categorie/${id}`, categorie,config);
                   navigate('/listeC');
                 } catch (error) {
                   console.error('Erreur lors de la soumission du formulaire :', error);
@@ -55,7 +55,7 @@ export const EditCat=()=> {
                     Authorization: `Bearer ${jwtToken}`,
                   },
                 };
-                const result = await axios.get(`https://vaika-production.up.railway.app/categorie/${id}`, config);
+                const result = await axios.get(`https://vaikaback-production.up.railway.app/categorie/${id}`, config);
                 
                 // Mettez à jour seulement la propriété nom de l'état existant
                 setCategorie((prevCategorie) => ({

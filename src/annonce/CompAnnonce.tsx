@@ -34,7 +34,7 @@ export const CompAnnonce = (props: AnnonceProps) => {
     };
 
     try {
-      const result = await axios.get(`https://vaika-production.up.railway.app/photos/${props.idA}`, config);
+      const result = await axios.get(`https://vaikaback-production.up.railway.app/photos/${props.idA}`, config);
       setCategorie(result.data);
     } catch (error) {
       console.error('Erreur lors de la récupération des photos:', error);

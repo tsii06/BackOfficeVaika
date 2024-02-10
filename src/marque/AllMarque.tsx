@@ -27,7 +27,7 @@ export const AllMarque = ()=>{
           Authorization: `Bearer ${jwtToken}`,
         },
       };
-        const result = await axios.get("https://vaika-production.up.railway.app/marques",config);
+        const result = await axios.get("https://vaikaback-production.up.railway.app/marques",config);
         setCats(result.data);
     } catch (error) {
         console.error("Erreur lors du chargement des catégories :", error);
@@ -47,7 +47,7 @@ const deleteCat= async(idCategorie:string)=>{
       Authorization: `Bearer ${jwtToken}`,
     },
   };
-  await axios.delete(`https://vaika-production.up.railway.app/marque/${idCategorie}`,config)
+  await axios.delete(`https://vaikaback-production.up.railway.app/marque/${idCategorie}`,config)
   loadCat();
   navigate('/listeM');
 }

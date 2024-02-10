@@ -34,7 +34,7 @@ export const Categorie = () => {
 
       // Vous pouvez également gérer le cas où la requête échoue avec try/catch
       const response = await axios.post(
-        'https://vaika-production.up.railway.app/categorie',
+        'https://vaikaback-production.up.railway.app/categorie',
         categorie,
         config
       );

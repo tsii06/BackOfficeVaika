@@ -30,7 +30,7 @@ export const Carb=()=> {
                       Authorization: `Bearer ${jwtToken}`,
                     },
                   };
-                  await axios.post('https://vaika-production.up.railway.app/carburant', categorie,config);
+                  await axios.post('https://vaikaback-production.up.railway.app/carburant', categorie,config);
                   navigate('/acceuil');
                 } catch (error) {
                   console.error('Erreur lors de la soumission du formulaire :', error);

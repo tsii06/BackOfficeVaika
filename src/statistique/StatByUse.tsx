@@ -28,7 +28,7 @@ const StatByUse = () => {
           },
         };
 
-        const response = await axios.get('https://vaika-production.up.railway.app/statByUtilisateur', config);
+        const response = await axios.get('https://vaikaback-production.up.railway.app/statByUtilisateur', config);
         const { data } = response;
 
         setUtilisateurs(data);

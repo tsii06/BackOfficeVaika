@@ -30,7 +30,7 @@ const Stat: React.FC<{ title: string }> = ({ title }) => {
             Authorization: `Bearer ${jwtToken}`,
           },
         };
-        const response = await axios.get('https://vaika-production.up.railway.app/statByDate',config); // Remplacez l'URL par votre API
+        const response = await axios.get('https://vaikaback-production.up.railway.app/statByDate',config); // Remplacez l'URL par votre API
         const { data } = response;
 
         // Assurez-vous que la réponse de l'API a la structure attendue

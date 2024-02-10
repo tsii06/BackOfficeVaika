@@ -53,7 +53,7 @@ export const Annonce = () => {
         Authorization: `Bearer ${jwtToken}`,
       },
     };
-      const result = await axios.get("https://vaika-production.up.railway.app/annonce/statut/1",config);
+      const result = await axios.get("https://vaikaback-production.up.railway.app/annonce/statut/1",config);
       setCats(result.data);
       console.log(result);
     } catch (error) {

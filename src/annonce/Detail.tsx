@@ -58,8 +58,8 @@ export const Detail = () => {
 
     try {
       const [categoryResult, photosResult] = await Promise.all([
-        axios.get(`https://vaika-production.up.railway.app/annonce/${id}`, config),
-        axios.get(`https://vaika-production.up.railway.app/photos/${id}`,config), // Replace with your actual photo API endpoint
+        axios.get(`https://vaikaback-production.up.railway.app/annonce/${id}`, config),
+        axios.get(`https://vaikaback-production.up.railway.app/photos/${id}`,config), // Replace with your actual photo API endpoint
       ]);
 
       setCats(categoryResult.data);
@@ -85,7 +85,7 @@ export const Detail = () => {
     };
     try {
       const response = await axios.patch(
-        `https://vaika-production.up.railway.app/annonce/${idCategorie}/statut?statut=2`,
+        `https://vaikaback-production.up.railway.app/annonce/${idCategorie}/statut?statut=2`,
         null, // Utilisez null pour le corps de la requête si aucun corps n'est nécessaire
         config
       );

@@ -34,7 +34,7 @@ export const EditMarque=()=> {
                       Authorization: `Bearer ${jwtToken}`,
                     },
                   };
-                  await axios.put(`https://vaika-production.up.railway.app/marque/${id}`, categorie,config);
+                  await axios.put(`https://vaikaback-production.up.railway.app/marque/${id}`, categorie,config);
                   navigate('/listeM');
                 } catch (error) {
                   console.error('Erreur lors de la soumission du formulaire :', error);
@@ -54,7 +54,7 @@ export const EditMarque=()=> {
                     Authorization: `Bearer ${jwtToken}`,
                   },
                 };
-                const result =  await axios.get(`https://vaika-production.up.railway.app/marque/${id}`,config);
+                const result =  await axios.get(`https://vaikaback-production.up.railway.app/marque/${id}`,config);
                 setCategorie((prevCategorie) => ({
                   ...prevCategorie,
                   nom: result.data.nom,
